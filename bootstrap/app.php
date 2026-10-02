@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Tamu yang membuka halaman/berkas admin diarahkan ke login panel Filament
         $middleware->redirectGuestsTo(fn () => route('filament.admin.auth.login'));
+
+        // Di produksi aplikasi berada di balik cloudflared (localhost) → percayai header X-Forwarded-*
+        // hanya dari loopback: URL ikut https dan rate limit Cek Status memakai IP asli pengunjung.
+        $middleware->trustProxies(at: ['127.0.0.1', '::1']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

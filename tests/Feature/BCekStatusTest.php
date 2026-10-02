@@ -165,3 +165,42 @@ it('helper Tanggal dan Nik memberi format yang benar', function () {
         ->and(Nik::mask('6171010101900001'))->toBe('6171********0001')
         ->and(Nik::mask('1234'))->toBe('****');
 });
+
+it('AC-22: di balik proxy lokal, batas percobaan dihitung per IP asli pengunjung', function () {
+    // cloudflared (127.0.0.1) meneruskan IP pengunjung lewat X-Forwarded-For
+    $this->withServerVariables(['REMOTE_ADDR' => '127.0.0.1']);
+
+    foreach (range(1, 5) as $percobaan) {
+        cekStatus(['tanggal_lahir' => '2000-01-01'])->assertStatus(302);
+    }
+
+    $this->withHeader('X-Forwarded-For', '203.0.113.10');
+    foreach (range(1, 5) as $percobaan) {
+        cekStatus(['tanggal_lahir' => '2000-01-01'])->assertStatus(302);
+    }
+    cekStatus()->assertStatus(429);
+
+    // Pengunjung lain lewat proxy yang sama tidak ikut terblokir
+    $this->withHeader('X-Forwarded-For', '203.0.113.20');
+    cekStatus()->assertRedirect(route('cek-status.hasil'));
+});
+
+it('mengabaikan X-Forwarded-For dari luar proxy lokal (tidak bisa dipakai menghindari batas)', function () {
+    $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.7']);
+
+    foreach (range(1, 5) as $percobaan) {
+        $this->withHeader('X-Forwarded-For', "203.0.113.{$percobaan}");
+        cekStatus(['tanggal_lahir' => '2000-01-01'])->assertStatus(302);
+    }
+
+    $this->withHeader('X-Forwarded-For', '203.0.113.99');
+    cekStatus()->assertStatus(429);
+});
+
+it('membangun URL https saat diakses lewat proxy lokal dengan X-Forwarded-Proto https', function () {
+    $this->withServerVariables(['REMOTE_ADDR' => '127.0.0.1'])
+        ->withHeaders(['X-Forwarded-Proto' => 'https', 'X-Forwarded-Host' => 'formptk.karyabangsa.sch.id', 'X-Forwarded-Port' => '443'])
+        ->get('/cek-status')
+        ->assertOk()
+        ->assertSee('action="https://formptk.karyabangsa.sch.id/cek-status"', escape: false);
+});

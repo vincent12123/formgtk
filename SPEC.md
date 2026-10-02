@@ -9,7 +9,7 @@
 > - Setiap requirement diberi ID `REQ-xx` agar bisa dilacak ke acceptance criteria.
 > - SPEC hanya boleh diubah oleh pemilik. AI boleh **mengusulkan** perubahan (lihat §12), bukan mengubah langsung.
 
-- **Versi:** 1.2
+- **Versi:** 1.3
 - **Status:** Disepakati
 - **Pemilik:** Sukardi (Admin Yayasan Harapan Karya Bangsa)
 - **Terakhir diperbarui:** 2026-10-02
@@ -151,6 +151,14 @@ Diimpor dari berkas CSV repositori `emsifa/api-wilayah-indonesia` (data yang sam
 |---|---|---|---|
 | name, email | string | Ya | |
 | password | string (hash) | Ya | |
+
+### 4.6a Tabel teknis (Filament)
+| Tabel | Fungsi |
+|---|---|
+| `exports` | Riwayat ekspor Excel per admin; berkas XLSX di disk privat `storage/app/private/filament_exports` |
+| `notifications` | Notifikasi "ekspor selesai" berisi tautan unduh bertanda tangan, hanya untuk admin pemilik |
+
+Tidak menyimpan field PTK baru. Ekspor diproses di antrean, jadi **queue worker wajib berjalan** di server.
 
 ### 4.7 Relasi
 - `schools` **one-to-many** `ptk_submissions` — setiap pengajuan ditugaskan ke satu unit.
@@ -306,6 +314,7 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 - **Lingkungan:** [belum diputuskan — §10]
 - **Cara deploy:** [belum diputuskan — §10]
 - **Sebelum deploy produksi:** backup database wajib.
+- **Proses latar:** queue worker (`php artisan queue:work`) wajib berjalan untuk ekspor Excel (§4.6a).
 - **Rencana rollback:** checkout tag rilis sebelumnya + rollback migrasi.
 - **Migrasi database:** hanya yang bisa di-rollback; migrasi destruktif wajib disetujui pemilik.
 
@@ -352,6 +361,7 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | 2026-10-02 | Kolom wilayah kode + nama terpisah; kolom "enum" sebagai string dengan daftar di `config/ptk.php`; PHP 8.3+ (Laravel 13) | Usulan AI CP1, disetujui pemilik |
 | 2026-10-02 | Database SQLite, menggantikan MySQL 8 | Keputusan pemilik: data kecil |
 | 2026-10-02 | Kalimantan Barat + Kabupaten Sintang terpilih otomatis dan tampil teratas di domisili | Keputusan pemilik: unit sekolah berada di Sintang |
+| 2026-10-02 | Tabel teknis `exports` + `notifications` untuk ekspor; queue worker wajib di server | Usulan AI CP5, disetujui pemilik |
 | 2026-10-02 | Kode desa ganda di data sumber Emsifa (`9107182005`, `9109070015`, Papua Barat Daya): hanya baris pertama yang disimpan | Keputusan pemilik: dapat diterima |
 
 ---
@@ -367,4 +377,4 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | 1.1 | 2026-10-02 | §8 | Runtime menjadi **PHP 8.3+**: Laravel versi terbaru yang didukung Filament v5 adalah Laravel 13 (terpasang 13.34 + Filament 5.9), yang mensyaratkan PHP ^8.3 (SPEC menulis 8.2+) | AI | Disetujui |
 | 1.1 | 2026-10-02 | §8, §11 | Database diganti dari MySQL 8 ke SQLite | Pemilik | Disetujui |
 | 1.2 | 2026-10-02 | §5.1, §11 | Prioritas wilayah Kalimantan Barat + Kabupaten Sintang (terpilih otomatis & teratas); keputusan kode desa ganda | Pemilik | Disetujui |
-| 1.3 | 2026-10-02 | §4, §8A.2 | Tambah tabel teknis bawaan Filament untuk ekspor Excel (REQ-13): `exports` (riwayat ekspor per admin, berkas XLSX di disk privat `storage/app/private/filament_exports`) dan `notifications` (notifikasi "ekspor selesai" + tautan unduh bertanda tangan, hanya untuk admin pemilik). Tidak menyimpan field PTK baru. Konsekuensi deploy: **queue worker wajib berjalan** (`php artisan queue:work`) karena ekspor diproses di antrean | AI | Diusulkan |
+| 1.3 | 2026-10-02 | §4, §8A.2 | Tambah tabel teknis bawaan Filament untuk ekspor Excel (REQ-13): `exports` (riwayat ekspor per admin, berkas XLSX di disk privat `storage/app/private/filament_exports`) dan `notifications` (notifikasi "ekspor selesai" + tautan unduh bertanda tangan, hanya untuk admin pemilik). Tidak menyimpan field PTK baru. Konsekuensi deploy: **queue worker wajib berjalan** (`php artisan queue:work`) karena ekspor diproses di antrean | AI | Disetujui |

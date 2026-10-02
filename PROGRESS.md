@@ -7,8 +7,8 @@
 
 ## Status Saat Ini
 
-- **Checkpoint aktif:** 5 — Dashboard admin (SPEC.md §9). Semua kriteria AUTO CP5 lolos. CP1–CP5 tinggal kriteria MANUAL ⏳ pemilik; CP6 (deploy) terhambat keputusan server.
-- **Versi SPEC yang dipakai:** 1.2 (SQLite, PHP 8.3+, kolom wilayah kode+nama, kolom pilihan sebagai string, prioritas Kalbar/Sintang)
+- **Checkpoint aktif:** 6 — **Produksi live** di https://formptk.karyabangsa.sch.id (2026-10-02). Semua kriteria AUTO lolos; tinggal kriteria MANUAL ⏳ pemilik.
+- **Versi SPEC yang dipakai:** 1.3 (SQLite, PHP 8.3+, wilayah kode+nama, prioritas Kalbar/Sintang, tabel exports/notifications + queue worker, deploy VPS karyabangsa)
 - **Terakhir diperbarui:** 2026-10-02 oleh AI
 
 ## ✅ Sudah Selesai
@@ -50,20 +50,27 @@
 - **Tema admin**: `resources/css/filament/admin/theme.css` (heading Source Serif 4 lokal, latar krem); `DatePicker::configureUsing` global (`native(false)`, `d F Y`, `id`).
 - Test `D1DashboardAdminTest.php` diperluas (ekspor dibaca dengan OpenSpout) — total 139 lolos; uji mutasi AC-48/AC-49 tertangkap. 2 bug (ikon `Heroicon::MiniArrowRight`, import `FontFamily`) ditemukan saat cek browser → pelajaran dicatat di AGENTS.md §8.
 
+### Checkpoint 6 — deploy (2026-10-02)
+- Cloudflare: Worker Apps Script lama `flat-mud-eb20` (formptk) & `super-butterfly-541f` (formptkadmin) + custom domain-nya dihapus atas permintaan pemilik; 3 worker lain tidak disentuh. DNS baru `CNAME formptk → f6f4fcf7…cfargotunnel.com` (proxied).
+- Kode: `trustProxies` loopback di `bootstrap/app.php` (URL https + rate limit per IP asli) + 3 test; commit `6e030af`.
+- VPS karyabangsa: clone ke `/var/www/formptk.karyabangsa.sch.id` (sukardi:www-data), `composer --no-dev`, `npm run build`, `.env` produksi (debug off, `SESSION_SECURE_COOKIE`, admin `sukardi@karyabangsa.sch.id` dengan password acak 20 karakter — **hanya di `.env` server**, WA admin dari form lama), SQLite + migrate + seed, `optimize` + `filament:optimize`, nginx site (`client_max_body_size 5m`, aset `try_files`, file tersembunyi ditolak), `formptk-worker.service`, ingress tunnel (backup `config.yml.bak-…`) + restart cloudflared.
+- Verifikasi luar: lihat acceptance-criteria §F baris CP6. App lain (sikeu, eduforge, sisfo, goldenbee, koperasi, ppdb) tetap 200.
+
 ## 🔄 Sedang Dikerjakan / Tertunda
 - Kriteria MANUAL ⏳ menunggu dicek pemilik: AC-01, 02, 03, 05, 06, 43, 46, 61, 62, NF-02 (semua sudah dicek AI di browser, bukti di acceptance-criteria).
-- Usulan SPEC v1.3 (§12): tabel teknis `exports` + `notifications` dan kewajiban queue worker — menunggu persetujuan.
+- Pemilik membaca password admin produksi dari `.env` server, login, lalu **ganti password** di menu profil/akun bila tersedia (atau ubah `.env` + reset via tinker).
+- **Backup belum otomatis** (SPEC: tidak perlu backup) — tetap disarankan salin `database/database.sqlite` + `storage/app/private/` sebelum update rilis (README).
+- Cloudflare Web Analytics (`static.cloudflareinsights.com`) disisipkan otomatis oleh pengaturan zona — bukan dari aplikasi.
 - Review design system DS-01–DS-04 belum dilakukan (metode REVIEW).
 - `PTK_ADMIN_WHATSAPP` di `.env` lokal masih kosong — tombol WhatsApp di halaman terkirim tidak tampil sampai nomor diisi.
 
 ## ⛔ Blocker / Menunggu Keputusan
-- Server deploy & domain (SPEC §10) — menghambat checkpoint 6.
 - Tanggal target semua PTK Valid (SPEC §10) — tidak menghambat pembangunan.
 
 ## ➡️ Langkah Berikutnya
-1. Pemilik uji coba menyeluruh di lokal (`npm run build` lalu `composer run dev` — sudah termasuk queue): kirim data → admin ubah ke Perlu Revisi → PTK cek status & perbaiki → admin Valid → ekspor. Centang kriteria ⏳.
-2. Pemilik memutuskan usulan SPEC v1.3 dan server/domain deploy (SPEC §10) → CP6.
-3. Opsional sebelum CP6: review DS-01–DS-04 oleh AI lain/pemilik.
+1. Pemilik uji coba di produksi dengan satu data uji: kirim → admin Perlu Revisi → cek status & perbaiki → admin Valid → ekspor. Centang kriteria ⏳. (Data uji dapat dihapus lewat tinker di server; admin memang tidak punya aksi hapus.)
+2. Umumkan tautan https://formptk.karyabangsa.sch.id ke PTK 6 unit.
+3. Opsional: review DS-01–DS-04; tanggal target semua PTK Valid (SPEC §10).
 
 ---
 
@@ -78,3 +85,4 @@
 | 2026-10-02 | 3 | Validasi server, simpan pengajuan + berkas privat, Submit ID WIB, halaman terkirim + salin + WhatsApp, route berkas admin, cast tanggal Y-m-d | 83 test lolos; AC-04, 07, 08, 10–17, NF-01, NF-03 ✅; REQ-03–06 ✅ |
 | 2026-10-02 | 4 | Cek Status (rate limit, pesan seragam, NIK tersamar), perbaikan data saat Perlu Revisi + riwayat, helper Tanggal & Nik, datepicker bersama | 116 test lolos; AC-20–23, 30–34, 60, NF-21 ✅; REQ-07, REQ-08 ✅ |
 | 2026-10-02 | 5 | Dashboard Filament: daftar/cari/filter, detail + berkas, ubah status + riwayat read-only, statistik, ekspor XLSX privat, tema heading | 139 test lolos; REQ-09, 12, 13, 15 ✅; AC-43, 46, 62 ⏳ pemilik |
+| 2026-10-02 | 6 | SPEC v1.3 disetujui; hapus Worker Apps Script lama, trustProxies, deploy VPS karyabangsa (nginx, systemd worker, tunnel, DNS) | Live; 142 test lolos; verifikasi luar & app lain OK |

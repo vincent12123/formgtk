@@ -311,8 +311,8 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | Data PTK lama | — | Tidak diimpor | — |
 
 ### 8A.2 Deployment & rollback
-- **Lingkungan:** [belum diputuskan — §10]
-- **Cara deploy:** [belum diputuskan — §10]
+- **Lingkungan:** VPS Hostinger **karyabangsa** (Ubuntu 24.04, PHP 8.3-FPM, nginx) di balik Cloudflare Tunnel `f6f4fcf7…`; URL `https://formptk.karyabangsa.sch.id`; direktori `/var/www/formptk.karyabangsa.sch.id` (pemilik `sukardi:www-data`); queue worker `formptk-worker.service`
+- **Cara deploy:** `git pull` dari `github.com/vincent12123/formgtk` (branch `main`) sebagai `sukardi`, lalu `composer install --no-dev -o`, `npm ci && npm run build`, `php artisan migrate --force`, `php artisan optimize && php artisan filament:optimize`, restart `formptk-worker` (langkah lengkap di README)
 - **Sebelum deploy produksi:** backup database wajib.
 - **Proses latar:** queue worker (`php artisan queue:work`) wajib berjalan untuk ekspor Excel (§4.6a).
 - **Rencana rollback:** checkout tag rilis sebelumnya + rollback migrasi.
@@ -329,7 +329,7 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | 3 | Simpan pengajuan: validasi server, upload berkas privat, NIK unik, Submit ID, tombol salin & WhatsApp | Kriteria REQ-04, 05, 06 lolos | ☐ |
 | 4 | Cek status + perbaikan data saat Perlu Revisi + riwayat | Kriteria REQ-07, 08, 15 (bagian PTK) lolos | ☐ |
 | 5 | Dashboard admin: statistik, daftar, cari/filter, detail + berkas + riwayat, ubah status + catatan revisi, ekspor Excel | Kriteria REQ-09–13, 14 & 15 (bagian admin) lolos | ☐ |
-| 6 | Deploy ke server produksi | Aplikasi bisa diakses dari domain | ☐ |
+| 6 | Deploy ke server produksi | Aplikasi bisa diakses dari domain | ✅ |
 
 > Posisi terakhir pengerjaan checkpoint dicatat di `PROGRESS.md`.
 
@@ -337,7 +337,7 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 
 ## 10. Pertanyaan Terbuka
 
-- [ ] **Server deploy:** server apa, OS, domain/subdomain, cara deploy (menghambat checkpoint 6).
+- [x] **Server deploy:** VPS karyabangsa, `formptk.karyabangsa.sch.id`, git + systemd worker (§8A.2) — diputuskan 2026-10-02.
 - [ ] **Tanggal target** semua PTK berstatus Valid.
 
 ---
@@ -362,6 +362,7 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | 2026-10-02 | Database SQLite, menggantikan MySQL 8 | Keputusan pemilik: data kecil |
 | 2026-10-02 | Kalimantan Barat + Kabupaten Sintang terpilih otomatis dan tampil teratas di domisili | Keputusan pemilik: unit sekolah berada di Sintang |
 | 2026-10-02 | Tabel teknis `exports` + `notifications` untuk ekspor; queue worker wajib di server | Usulan AI CP5, disetujui pemilik |
+| 2026-10-02 | Deploy ke VPS Hostinger karyabangsa di `formptk.karyabangsa.sch.id`; Worker Cloudflare lama (Apps Script) `flat-mud-eb20` & `super-butterfly-541f` beserta domain `formptk`/`formptkadmin` dihapus | Keputusan pemilik |
 | 2026-10-02 | Kode desa ganda di data sumber Emsifa (`9107182005`, `9109070015`, Papua Barat Daya): hanya baris pertama yang disimpan | Keputusan pemilik: dapat diterima |
 
 ---
@@ -378,3 +379,4 @@ Login → Dashboard (statistik) → Daftar pengajuan (cari/filter) → Detail (d
 | 1.1 | 2026-10-02 | §8, §11 | Database diganti dari MySQL 8 ke SQLite | Pemilik | Disetujui |
 | 1.2 | 2026-10-02 | §5.1, §11 | Prioritas wilayah Kalimantan Barat + Kabupaten Sintang (terpilih otomatis & teratas); keputusan kode desa ganda | Pemilik | Disetujui |
 | 1.3 | 2026-10-02 | §4, §8A.2 | Tambah tabel teknis bawaan Filament untuk ekspor Excel (REQ-13): `exports` (riwayat ekspor per admin, berkas XLSX di disk privat `storage/app/private/filament_exports`) dan `notifications` (notifikasi "ekspor selesai" + tautan unduh bertanda tangan, hanya untuk admin pemilik). Tidak menyimpan field PTK baru. Konsekuensi deploy: **queue worker wajib berjalan** (`php artisan queue:work`) karena ekspor diproses di antrean | AI | Disetujui |
+| 1.3 | 2026-10-02 | §8A.2, §10, §11 | Lingkungan & cara deploy diisi (VPS karyabangsa, formptk.karyabangsa.sch.id) | Pemilik | Disetujui |

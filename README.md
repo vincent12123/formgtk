@@ -103,15 +103,43 @@ php artisan test
 ./vendor/bin/pint --test
 ```
 
-## 🌐 Deployment
+## 🌐 Deployment (produksi)
 
-Lihat `SPEC.md §8A`. Server, domain, dan cara deploy **belum diputuskan** (SPEC §10).
-Yang sudah pasti: backup database sebelum deploy produksi, `npm run build && php artisan optimize`,
-dan queue worker harus berjalan (`php artisan queue:work`, dipakai ekspor Excel Filament —
-tanpa worker, ekspor berhenti di "Ekspor dimulai" dan notifikasi unduh tidak pernah muncul).
-Database SQLite ada di `database/database.sqlite`; backup = salin berkas itu + `storage/app/private/`
-(Foto KTP, SK, hasil ekspor).
+**Live:** https://formptk.karyabangsa.sch.id (admin: `/admin`) — VPS Hostinger **karyabangsa**,
+di balik Cloudflare Tunnel. Detail keputusan di `SPEC.md §8A.2`.
 
+| Bagian | Nilai |
+|---|---|
+| Direktori | `/var/www/formptk.karyabangsa.sch.id` (pemilik `sukardi:www-data`) |
+| Database | SQLite `database/database.sqlite` |
+| Berkas privat | `storage/app/private/` (Foto KTP, SK, hasil ekspor) |
+| Queue worker | systemd `formptk-worker.service` (log `/var/log/formptk-worker.log`) — **wajib** untuk ekspor Excel |
+| nginx | `/etc/nginx/sites-available/formptk.karyabangsa.sch.id` (`client_max_body_size 5m`) |
+| Tunnel | ingress di `/etc/cloudflared/config.yml` + DNS `CNAME formptk → <tunnel>.cfargotunnel.com` |
+| Rahasia | `.env` di server (`ADMIN_*`, `PTK_ADMIN_WHATSAPP`, `APP_KEY`) — tidak ada di repo |
+
+### Update rilis
+
+Jalankan sebagai `sukardi` (bukan root), **backup dulu**:
+
+```bash
+ssh root@karyabangsa
+cd /var/www/formptk.karyabangsa.sch.id
+sudo -u sukardi cp database/database.sqlite ~/backup-formptk-$(date +%Y%m%d-%H%M).sqlite
+sudo -u sukardi git pull origin main
+sudo -u sukardi composer install --no-dev --optimize-autoloader --no-interaction
+sudo -u sukardi npm ci && sudo -u sukardi npm run build
+sudo -u sukardi php artisan migrate --force
+sudo -u sukardi php artisan optimize && sudo -u sukardi php artisan filament:optimize
+systemctl restart formptk-worker
+```
+
+**Rollback:** `git checkout <commit-sebelumnya>`, ulangi langkah build, dan kembalikan salinan
+`database.sqlite` bila migrasi sudah mengubah data.
+
+Catatan: aplikasi mempercayai header `X-Forwarded-*` hanya dari loopback (`bootstrap/app.php`),
+karena cloudflared meneruskan dari `localhost` — tanpa itu URL keluar `http://` dan batas Cek Status
+berlaku untuk semua pengunjung sekaligus.
 ## 🔐 Dashboard Admin
 
 `/admin` — login dengan `ADMIN_EMAIL` / `ADMIN_PASSWORD` dari `.env` (dibuat oleh seeder).
@@ -124,4 +152,4 @@ jenis PTK), detail + berkas, **Ubah Status** (Perlu Revisi wajib catatan), riway
 ## 👤 Kontak
 
 - **Pemilik:** Sukardi
-- **Status project:** Pembangunan — lihat `PROGRESS.md`
+- **Status project:** Produksi (CP6) — https://formptk.karyabangsa.sch.id; lihat `PROGRESS.md`

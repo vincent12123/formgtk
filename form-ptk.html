@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form PTK Harapan Karya Bangsa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
+
+      <!-- Header -->
+      <div class="border-b border-slate-200 bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 px-6 py-8 text-white sm:px-8">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-100">Formulir PTK</span>
+            <h1 class="mt-4 text-2xl font-bold sm:text-3xl">Form Data PTK Harapan Karya Bangsa</h1>
+            <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-200">Silakan lengkapi data identitas, domisili, kepegawaian, dan penugasan.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="border-b border-slate-200 bg-slate-50 px-4 py-4 sm:px-8">
+        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <button type="button" class="tab-btn flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition" data-tab="identitas">
+            <span class="tab-badge flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold">1</span>
+            <span>
+              <span class="block text-sm font-semibold">Identitas</span>
+              <span class="block text-xs text-current/70">Data pribadi</span>
+            </span>
+          </button>
+
+          <button type="button" class="tab-btn flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition" data-tab="domisili">
+            <span class="tab-badge flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold">2</span>
+            <span>
+              <span class="block text-sm font-semibold">Domisili</span>
+              <span class="block text-xs text-current/70">Alamat & wilayah</span>
+            </span>
+          </button>
+
+          <button type="button" class="tab-btn flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition" data-tab="kepegawaian">
+            <span class="tab-badge flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold">3</span>
+            <span>
+              <span class="block text-sm font-semibold">Kepegawaian</span>
+              <span class="block text-xs text-current/70">Status & pengangkatan</span>
+            </span>
+          </button>
+
+          <button type="button" class="tab-btn flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition" data-tab="penugasan">
+            <span class="tab-badge flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold">4</span>
+            <span>
+              <span class="block text-sm font-semibold">Penugasan</span>
+              <span class="block text-xs text-current/70">Sekolah & berkas</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="ptkForm" class="px-4 py-6 sm:px-8 sm:py-8">
+
+        <!-- TAB 1: IDENTITAS -->
+        <section id="identitas" class="tab-content block">
+          <div class="mb-6 flex items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Identitas PTK</h2>
+              <p class="mt-1 text-sm text-slate-500">Isi data pokok PTK sesuai dokumen resmi.</p>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">Langkah 1 dari 4</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div>
+              <label for="nik" class="mb-2 block text-sm font-semibold text-slate-700">NIK</label>
+              <input type="text" id="nik" name="nik" maxlength="16" placeholder="Masukkan NIK" class="input" />
+            </div>
+
+            <div>
+              <label for="nama" class="mb-2 block text-sm font-semibold text-slate-700">Nama</label>
+              <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" class="input" />
+            </div>
+
+            <div>
+              <label for="tempatLahir" class="mb-2 block text-sm font-semibold text-slate-700">Tempat Lahir</label>
+              <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Masukkan tempat lahir" class="input" />
+            </div>
+
+            <div>
+              <label for="tanggalLahir" class="mb-2 block text-sm font-semibold text-slate-700">Tanggal Lahir</label>
+              <input type="date" id="tanggalLahir" name="tanggalLahir" class="input" />
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold text-slate-700">Jenis Kelamin</label>
+              <div class="group-box">
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="jenisKelamin" value="Laki-laki" class="radio" /> Laki-laki
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="jenisKelamin" value="Perempuan" class="radio" /> Perempuan
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label for="namaIbuKandung" class="mb-2 block text-sm font-semibold text-slate-700">Nama Ibu Kandung</label>
+              <input type="text" id="namaIbuKandung" name="namaIbuKandung" placeholder="Masukkan nama ibu kandung" class="input" />
+            </div>
+
+            <div>
+              <label for="agama" class="mb-2 block text-sm font-semibold text-slate-700">Agama</label>
+              <select id="agama" name="agama" class="input">
+                <option value="">Pilih agama</option>
+                <option>Islam</option>
+                <option>Kristen</option>
+                <option>Katholik</option>
+                <option>Hindu</option>
+                <option>Budha</option>
+                <option>Khonghucu</option>
+                <option>Lainnya</option>
+                <option>Kepercayaan kpd Tuhan YME</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="kebutuhanKhusus" class="mb-2 block text-sm font-semibold text-slate-700">Kebutuhan Khusus</label>
+              <select id="kebutuhanKhusus" name="kebutuhanKhusus" class="input">
+                <option value="">Pilih kebutuhan khusus</option>
+                <option>Tidak ada</option>
+                <option>A - Tuna netra</option>
+                <option>B - Tuna rungu</option>
+                <option>C - Tuna grahita ringan</option>
+                <option>C1 - Tuna grahita sedang</option>
+                <option>D - Tuna daksa ringan</option>
+                <option>E - Tuna laras</option>
+                <option>F - Tuna wicara</option>
+                <option>H - Hiperaktif</option>
+                <option>I - Cerdas Istimewa</option>
+                <option>J - Bakat Istimewa</option>
+                <option>K - Kesulitan Belajar</option>
+                <option>N - Narkoba</option>
+                <option>O - Indigo</option>
+                <option>P - Down Syndrome</option>
+                <option>Q - Autis</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold text-slate-700">Status Perkawinan</label>
+              <div class="group-box">
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="statusPerkawinan" value="Menikah" class="radio" /> Menikah
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="statusPerkawinan" value="Belum Menikah" class="radio" /> Belum Menikah
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="statusPerkawinan" value="Janda/Duda" class="radio" /> Janda/Duda
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+              <input type="email" id="email" name="email" placeholder="nama@email.com" class="input" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="fotoKtp" class="mb-2 block text-sm font-semibold text-slate-700">Foto KTP</label>
+              <input
+                type="file"
+                id="fotoKtp"
+                name="fotoKtp"
+                accept="image/jpeg,image/png"
+                class="input file:mr-4 file:rounded-xl file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+              />
+              <p class="mt-1 text-xs text-slate-500">Format JPG / PNG, maksimal 1 MB.</p>
+            </div>
+          </div>
+
+          <div id="identitasStatus" class="status-box hidden"></div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-sm text-slate-500">Lengkapi data identitas sebelum lanjut ke tab berikutnya.</p>
+            <button type="button" class="next-tab btn-primary" data-next="domisili">Lanjut ke Domisili</button>
+          </div>
+        </section>
+
+        <!-- TAB 2: DOMISILI -->
+        <section id="domisili" class="tab-content hidden">
+          <div class="mb-6 flex items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Domisili</h2>
+              <p class="mt-1 text-sm text-slate-500">Gunakan struktur wilayah bertingkat dari Emsifa.</p>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">Langkah 2 dari 4</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div>
+              <label for="domProvinsi" class="mb-2 block text-sm font-semibold text-slate-700">Provinsi</label>
+              <select id="domProvinsi" name="domProvinsi" class="input"></select>
+            </div>
+
+            <div>
+              <label for="domKabupaten" class="mb-2 block text-sm font-semibold text-slate-700">Kabupaten / Kota</label>
+              <select id="domKabupaten" name="domKabupaten" disabled class="input disabled:bg-slate-50 disabled:text-slate-400"></select>
+            </div>
+
+            <div>
+              <label for="domKecamatan" class="mb-2 block text-sm font-semibold text-slate-700">Kecamatan</label>
+              <select id="domKecamatan" name="domKecamatan" disabled class="input disabled:bg-slate-50 disabled:text-slate-400"></select>
+            </div>
+
+            <div>
+              <label for="domDesa" class="mb-2 block text-sm font-semibold text-slate-700">Desa / Kelurahan</label>
+              <select id="domDesa" name="domDesa" disabled class="input disabled:bg-slate-50 disabled:text-slate-400"></select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="alamat" class="mb-2 block text-sm font-semibold text-slate-700">Alamat</label>
+              <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" class="textarea"></textarea>
+            </div>
+
+            <div>
+              <label for="kodePos" class="mb-2 block text-sm font-semibold text-slate-700">Kode Pos</label>
+              <input type="text" id="kodePos" name="kodePos" maxlength="10" placeholder="Masukkan kode pos" class="input" />
+            </div>
+          </div>
+
+          <div id="domStatus" class="status-box hidden"></div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <button type="button" class="prev-tab btn-secondary" data-prev="identitas">Kembali</button>
+            <button type="button" class="next-tab btn-primary" data-next="kepegawaian">Lanjut ke Kepegawaian</button>
+          </div>
+        </section>
+
+        <!-- TAB 3: KEPEGAWAIAN -->
+        <section id="kepegawaian" class="tab-content hidden">
+          <div class="mb-6 flex items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Kepegawaian</h2>
+              <p class="mt-1 text-sm text-slate-500">Isi informasi kepegawaian dan riwayat pengangkatan.</p>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">Langkah 3 dari 4</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div>
+              <label for="jenisPtk" class="mb-2 block text-sm font-semibold text-slate-700">Jenis PTK</label>
+              <select id="jenisPtk" name="jenisPtk" class="input">
+                <option value="">Pilih jenis PTK</option>
+                <option value="Kepala Sekolah">Kepala Sekolah</option>
+                <option value="Guru">Guru</option>
+                <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="jabatanPtk" class="mb-2 block text-sm font-semibold text-slate-700">Jabatan PTK</label>
+              <select id="jabatanPtk" name="jabatanPtk" class="input" disabled>
+                <option value="">Pilih Jenis PTK terlebih dahulu</option>
+              </select>
+              <p id="jabatanPtkHelp" class="mt-1 text-xs text-slate-500">Jabatan akan tersedia setelah Jenis PTK dipilih.</p>
+            </div>
+
+            <div>
+              <label for="statusKepegawaian" class="mb-2 block text-sm font-semibold text-slate-700">Status Kepegawaian</label>
+              <select id="statusKepegawaian" name="statusKepegawaian" class="input">
+                <option value="">Pilih status kepegawaian</option>
+                <option value="GTY/PTY">GTY/PTY</option>
+                <option value="Tenaga Pendidikan Sekolah">Tenaga Pendidikan Sekolah</option>
+                <option value="Guru Tidak Tetap">Guru Tidak Tetap</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="lembagaPengangkat" class="mb-2 block text-sm font-semibold text-slate-700">Lembaga Pengangkat</label>
+              <select id="lembagaPengangkat" name="lembagaPengangkat" class="input">
+                <option value="">Pilih lembaga pengangkat</option>
+                <option>Pemerintah Pusat</option>
+                <option>Pemerintah Provinsi</option>
+                <option>Pemerintah Kab/Kota</option>
+                <option>Ketua Yayasan</option>
+                <option>Kepala Sekolah</option>
+                <option>Komite Sekolah</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="skPengangkatan" class="mb-2 block text-sm font-semibold text-slate-700">SK Pengangkatan</label>
+              <input type="text" id="skPengangkatan" name="skPengangkatan" placeholder="Masukkan nomor SK pengangkatan" class="input" />
+            </div>
+
+            <div>
+              <label for="tmtPengangkatan" class="mb-2 block text-sm font-semibold text-slate-700">TMT Pengangkatan</label>
+              <input type="date" id="tmtPengangkatan" name="tmtPengangkatan" class="input" />
+            </div>
+
+            <div>
+              <label for="sumberGaji" class="mb-2 block text-sm font-semibold text-slate-700">Sumber Gaji</label>
+              <select id="sumberGaji" name="sumberGaji" class="input">
+                <option value="">Pilih sumber gaji</option>
+                <option>Yayasan</option>
+                <option>Sekolah</option>
+                <option>Pemerintah</option>
+              </select>
+            </div>
+
+            <div id="lisensiKepsekWrapper" class="hidden">
+              <label class="mb-2 block text-sm font-semibold text-slate-700">Sudah Lisensi Kepala Sekolah</label>
+              <div class="group-box">
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="lisensiKepsek" value="Sudah" class="radio" /> Sudah
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="radio" name="lisensiKepsek" value="Belum" class="radio" /> Belum
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="kepegawaianStatus" class="status-box hidden"></div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <button type="button" class="prev-tab btn-secondary" data-prev="domisili">Kembali</button>
+            <button type="button" class="next-tab btn-primary" data-next="penugasan">Lanjut ke Penugasan</button>
+          </div>
+        </section>
+
+        <!-- TAB 4: PENUGASAN -->
+        <section id="penugasan" class="tab-content hidden">
+          <div class="mb-6 flex items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Penugasan</h2>
+              <p class="mt-1 text-sm text-slate-500">Pilih sekolah dan lengkapi dokumen penugasan.</p>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">Langkah 4 dari 4</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div class="md:col-span-2">
+              <label for="sekolah" class="mb-2 block text-sm font-semibold text-slate-700">Sekolah</label>
+              <button type="button" id="openSchoolModal" class="input flex items-center justify-between text-left">
+                <span id="selectedSchoolText" class="text-slate-500">-- Pilih Sekolah --</span>
+                <span class="text-slate-400"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <input type="hidden" id="sekolah" name="sekolah" />
+              <p class="mt-2 text-xs text-slate-500">Cari berdasarkan NPSN atau nama sekolah di bawah Yayasan Karya Bangsa.</p>
+            </div>
+
+            <div>
+              <label for="nomorSuratTugas" class="mb-2 block text-sm font-semibold text-slate-700">Nomor Surat Tugas</label>
+              <input type="text" id="nomorSuratTugas" name="nomorSuratTugas" placeholder="Masukkan nomor surat tugas" class="input" />
+            </div>
+
+            <div>
+              <label for="tanggalSuratTugas" class="mb-2 block text-sm font-semibold text-slate-700">Tanggal Surat Tugas</label>
+              <input type="date" id="tanggalSuratTugas" name="tanggalSuratTugas" class="input" />
+            </div>
+
+            <div>
+              <label for="tmtTugas" class="mb-2 block text-sm font-semibold text-slate-700">TMT Tugas</label>
+              <input type="date" id="tmtTugas" name="tmtTugas" class="input" />
+            </div>
+
+            <div>
+              <label for="skPenugasan" class="mb-2 block text-sm font-semibold text-slate-700">SK Penugasan (PDF)</label>
+              <input
+                type="file"
+                id="skPenugasan"
+                name="skPenugasan"
+                accept="application/pdf"
+                class="input file:mr-4 file:rounded-xl file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+              />
+              <p class="mt-1 text-xs text-slate-500">Format PDF, maksimal 1 MB. Akan diunggah ke Google Drive secara otomatis.</p>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="mb-2 block text-sm font-semibold text-slate-700">Pernyataan Persetujuan</label>
+              <div class="group-box">
+                <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+                  <input type="checkbox" id="persetujuan" name="persetujuan" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                  <span>Saya menyatakan data yang diisi sudah benar dan dapat dipertanggungjawabkan.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="tugasStatus" class="status-box hidden"></div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <button type="button" class="prev-tab btn-secondary" data-prev="kepegawaian">Kembali</button>
+            <div class="flex flex-wrap items-center gap-3">
+              <a
+                id="waAfterSubmitBtn"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary hidden"
+              >
+                <i class="fab fa-whatsapp mr-2 text-emerald-600"></i>
+                Hubungi Admin via WhatsApp
+              </a>
+              <button type="submit" id="submitBtn" class="btn-success">
+                <span id="submitLabel">Simpan Data PTK</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="submitIdBox" class="mt-5 hidden rounded-2xl border border-blue-200 bg-blue-50 px-4 py-4 text-sm text-blue-900">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Submit ID</div>
+                <div id="submitIdText" class="mt-1 font-mono text-base font-bold text-blue-950">-</div>
+                <p class="mt-2 text-sm leading-6 text-blue-800">
+                  Submit ID ini digunakan untuk cek status pengajuan PTK di menu <strong>Cek Status</strong>. Silakan salin ID ini, lalu lanjut <strong>hubungi admin via WhatsApp</strong>.
+                </p>
+              </div>
+              <button type="button" id="copySubmitIdBtn" class="btn-secondary whitespace-nowrap">
+                <i class="fas fa-copy mr-2"></i> Salin Submit ID
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Pilih Sekolah -->
+  <div id="schoolModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4">
+    <div class="w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900">Pilih Sekolah</h3>
+          <p class="text-sm text-slate-500">Cari berdasarkan NPSN atau nama sekolah.</p>
+        </div>
+        <button type="button" id="closeSchoolModal" class="rounded-xl border border-slate-200 px-3 py-2 text-slate-500 transition hover:bg-slate-50">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-5">
+        <div class="relative">
+          <input type="text" id="schoolSearchInput" placeholder="Cari nama atau NPSN sekolah..." class="input pr-11" />
+          <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"><i class="fas fa-search"></i></span>
+        </div>
+        <div id="schoolList" class="mt-4 max-h-80 overflow-y-auto rounded-2xl border border-slate-200 bg-slate-50 p-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Awal -->
+  <div id="startupModal" class="fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/60 p-4">
+    <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl">
+      <div class="text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+          <i class="fas fa-user-check text-xl"></i>
+        </div>
+        <h2 class="text-xl font-bold text-slate-900">Selamat Datang</h2>
+        <p class="mt-2 text-sm leading-6 text-slate-500">
+          Silakan pilih apakah ingin mengisi form PTK baru atau mengecek status pengajuan yang sudah pernah dikirim.
+        </p>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <button type="button" id="btnIsiForm" class="btn-primary justify-center">
+          <i class="fas fa-file-alt mr-2"></i> Isi Form
+        </button>
+        <button type="button" id="btnCekStatus" class="btn-secondary justify-center">
+          <i class="fas fa-search mr-2"></i> Cek Status
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Cek Status -->
+  <div id="statusModal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-slate-900/60 p-4">
+    <div class="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900">Cek Status PTK</h3>
+          <p class="mt-1 text-sm text-slate-500">Masukkan Submit ID, misalnya: PTK-20260411-153045-1234</p>
+        </div>
+        <button type="button" id="closeStatusModal" class="rounded-xl border border-slate-200 px-3 py-2 text-slate-500 hover:bg-slate-50">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="mt-5">
+        <label for="cekSubmitId" class="mb-2 block text-sm font-semibold text-slate-700">Submit ID</label>
+        <input type="text" id="cekSubmitId" class="input" placeholder="Masukkan Submit ID" />
+      </div>
+
+      <div class="mt-4 flex gap-3">
+        <button type="button" id="btnProsesCekStatus" class="btn-primary">
+          <i class="fas fa-search mr-2"></i> Cek Sekarang
+        </button>
+        <button type="button" id="btnKembaliKeForm" class="btn-secondary">
+          Kembali
+        </button>
+      </div>
+
+      <div id="statusCheckResult" class="mt-5 hidden rounded-2xl border px-4 py-4 text-sm"></div>
+    </div>
+  </div>
+
+  <script>
+    // ================================================================
+    // Data & Konfigurasi
+    // ================================================================
+    const EMSIFA_BASE = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+
+    const sekolahData = [
+      { id: '70027214', text: '(70027214) KB GOLDEN BEE' },
+      { id: '70011827', text: '(70011827) SD KARYA BANGSA' },
+      { id: '70050352', text: '(70050352) SMA KARYA BANGSA' },
+      { id: '70004213', text: '(70004213) SMK KARYA BANGSA' },
+      { id: '70011201', text: '(70011201) SMP KARYA BANGSA' },
+      { id: '70027216', text: '(70027216) TK GOLDEN BEE' }
+    ];
+
+    const jabatanPtkData = {
+      "Kepala Sekolah": ["Kepala Sekolah"],
+      "Guru": [
+        "Guru Agama Budha", "Guru Agama Hindu", "Guru Agama Islam", "Guru Agama Katolik", "Guru Agama Kristen",
+        "Guru Agribisnis Perikanan", "Guru Agribisnis Tanaman", "Guru Agribisnis Ternak",
+        "Guru Agriteknologi Pengolahan Hasil Pertanian", "Guru Akuntansi Dan Keuangan Lembaga", "Guru Animasi",
+        "Guru Antropologi", "Guru Bahasa Arab", "Guru Bahasa Bali", "Guru Bahasa Indonesia", "Guru Bahasa Inggris",
+        "Guru Bahasa Jawa", "Guru Bahasa Jepang", "Guru Bahasa Jerman", "Guru Bahasa Madura", "Guru Bahasa Mandarin",
+        "Guru Bahasa Perancis", "Guru Bahasa Sunda", "Guru Bimbingan Konseling", "Guru Biologi",
+        "Guru Broadcasting Dan Perfilman", "Guru Busana", "Guru Desain Dan Produksi Kriya",
+        "Guru Desain Komunikasi Visual", "Guru Desain Pemodelan Dan Informasi Bangunan", "Guru Ekonomi",
+        "Guru Fisika", "Guru Geografi", "Guru IPA", "Guru IPS", "Guru Kecantikan Dan Spa", "Guru Kehutanan",
+        "Guru Kelas", "Guru Kimia", "Guru Kimia Analisis", "Guru Konstruksi Dan Perawatan Bangunan Sipil",
+        "Guru Kuliner", "Guru Layanan Kesehatan", "Guru Manajemen Perkantoran Dan Layanan Bisnis",
+        "Guru Matematika", "Guru Muatan Lokal Lainnya", "Guru Nautika Kapal Niaga",
+        "Guru Nautika Kapal Penangkapan Ikan", "Guru Pekerjaan Sosial", "Guru Pemasaran", "Guru Pendidikan Khusus",
+        "Guru Pengembangan Perangkat Lunak Dan Gim", "Guru Penjasorkes", "Guru Perhotelan", "Guru PPKN",
+        "Guru Prakarya Dan Kewirausahaan", "Guru Sejarah", "Guru Seni Budaya", "Guru Seni Pertunjukan",
+        "Guru Seni Rupa", "Guru Sosiologi", "Guru Teknik Elektronika", "Guru Teknik Energi Terbarukan",
+        "Guru Teknik Furnitur", "Guru Teknik Geologi Pertambangan", "Guru Teknik Geospasial",
+        "Guru Teknik Jaringan Komputer Dan Telekomunikasi", "Guru Teknik Ketenagalistrikan",
+        "Guru Teknik Kimia Industri", "Guru Teknik Konstruksi Dan Perumahan", "Guru Teknik Konstruksi Kapal",
+        "Guru Teknik Laboratorium Medik", "Guru Teknik Logistik", "Guru Teknik Mesin", "Guru Teknik Otomotif",
+        "Guru Teknik Pengelasan Dan Fabrikasi Logam", "Guru Teknik Perawatan Gedung", "Guru Teknik Perminyakan",
+        "Guru Teknik Pesawat Udara", "Guru Teknik Tekstil", "Guru Teknika Kapal Niaga",
+        "Guru Teknika Kapal Penangkapan Ikan", "Guru Teknologi Farmasi", "Guru TIK",
+        "Guru Usaha Layanan Pariwisata", "Guru Usaha Pertanian Terpadu", "Pamong Belajar", "Tutor"
+      ],
+      "Tenaga Kependidikan": [
+        "Instruktur", "Instruktur Kejuruan", "Laboran", "Penjaga Sekolah", "Pesuruh/Office Boy",
+        "Petugas Keamanan", "Pustakawan", "Tenaga Administrasi Sekolah", "Terapis", "Tukang Kebun"
+      ]
+    };
+
+    const tabOrder = ['identitas', 'domisili', 'kepegawaian', 'penugasan'];
+
+    // ================================================================
+    // Tab Navigation
+    // ================================================================
+    function updateTabStyles(activeTabId) {
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        const badge = btn.querySelector('.tab-badge');
+        if (btn.dataset.tab === activeTabId) {
+          btn.className = 'tab-btn flex items-center gap-3 rounded-2xl border border-blue-600 bg-blue-600 px-4 py-3 text-left text-white shadow-sm transition';
+          if (badge) {
+            badge.className = 'tab-badge flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-sm font-bold';
+          }
+        } else {
+          btn.className = 'tab-btn flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50';
+          if (badge) {
+            badge.className = 'tab-badge flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700';
+          }
+        }
+      });
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach((tab) => {
+        tab.classList.toggle('hidden', tab.id !== tabId);
+        tab.classList.toggle('block', tab.id === tabId);
+      });
+      updateTabStyles(tabId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Pindah ke tab lain: semua tab sebelum tujuan harus valid
+    function goToTab(targetId) {
+      var targetIdx = tabOrder.indexOf(targetId);
+      for (var i = 0; i < targetIdx; i++) {
+        if (!validateSection(tabOrder[i])) return;
+      }
+      showTab(targetId);
+    }
+
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => goToTab(btn.dataset.tab));
+    });
+
+    document.querySelectorAll('.next-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        var current = btn.closest('.tab-content');
+        if (current && !validateSection(current.id)) return;
+        showTab(btn.dataset.next);
+      });
+    });
+
+    document.querySelectorAll('.prev-tab').forEach((btn) => {
+      btn.addEventListener('click', () => showTab(btn.dataset.prev));
+    });
+
+    // ================================================================
+    // Status Helper
+    // ================================================================
+    function setStatus(el, message, type) {
+      const base = 'status-box mt-5 rounded-2xl border px-4 py-3 text-sm';
+      const variants = {
+        info: ' border-blue-200 bg-blue-50 text-blue-700',
+        success: ' border-emerald-200 bg-emerald-50 text-emerald-700',
+        error: ' border-rose-200 bg-rose-50 text-rose-700'
+      };
+      el.textContent = message;
+      el.className = base + (variants[type] || variants.info);
+    }
+
+    function clearStatus(el) {
+      el.textContent = '';
+      el.className = 'status-box hidden';
+    }
+
+    function base64ToBlob(base64, mimeType) {
+      const byteChars = atob(base64);
+      const byteNumbers = new Array(byteChars.length);
+      for (let i = 0; i < byteChars.length; i++) {
+        byteNumbers[i] = byteChars.charCodeAt(i);
+      }
+      return new Blob([new Uint8Array(byteNumbers)], { type: mimeType || 'application/pdf' });
+    }
+
+    function triggerPdfDownload(base64, fileName) {
+      if (!base64 || !fileName) return;
+      const blob = base64ToBlob(base64, 'application/pdf');
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function() {
+        URL.revokeObjectURL(url);
+      }, 1000);
+    }
+
+    // ================================================================
+    // Wilayah (Emsifa API)
+    // ================================================================
+    function setOptions(selectEl, items, placeholder, valueKey, labelKey) {
+      valueKey = valueKey || 'id';
+      labelKey = labelKey || 'name';
+      selectEl.innerHTML = '<option value="">' + placeholder + '</option>';
+      items.forEach(function(item) {
+        var option = document.createElement('option');
+        option.value = item[valueKey];
+        option.textContent = item[labelKey];
+        selectEl.appendChild(option);
+      });
+      selectEl.disabled = false;
+    }
+
+    function resetSelect(selectEl, placeholder) {
+      selectEl.innerHTML = '<option value="">' + placeholder + '</option>';
+      selectEl.disabled = true;
+    }
+
+    async function fetchWilayah(url) {
+      try {
+        const response = await fetch(url, {
+          signal: AbortSignal.timeout(10000)
+        });
+        if (!response.ok) throw new Error('Gagal memuat data wilayah');
+        return response.json();
+      } catch (error) {
+        console.error('Wilayah API error:', error);
+        throw error;
+      }
+    }
+
+    async function initWilayah(prefix, statusElementId) {
+      const provinsi = document.getElementById(prefix + 'Provinsi');
+      const kabupaten = document.getElementById(prefix + 'Kabupaten');
+      const kecamatan = document.getElementById(prefix + 'Kecamatan');
+      const desa = document.getElementById(prefix + 'Desa');
+      const statusEl = document.getElementById(statusElementId);
+
+      try {
+        setStatus(statusEl, 'Memuat daftar provinsi dari Emsifa...', 'info');
+        const provinces = await fetchWilayah(EMSIFA_BASE + '/provinces.json');
+        setOptions(provinsi, provinces, 'Pilih provinsi');
+        setStatus(statusEl, 'Data wilayah siap digunakan.', 'success');
+      } catch (error) {
+        console.error('Wilayah API error:', error);
+        setStatus(statusEl, 'Gagal memuat provinsi. Periksa koneksi internet atau coba lagi nanti.', 'error');
+
+        provinsi.innerHTML =
+          '<option value="">Pilih provinsi (manual)</option>' +
+          '<option value="Jawa Barat">Jawa Barat</option>' +
+          '<option value="Jawa Tengah">Jawa Tengah</option>' +
+          '<option value="Jawa Timur">Jawa Timur</option>';
+        provinsi.disabled = false;
+      }
+
+      provinsi.addEventListener('change', async () => {
+        resetSelect(kabupaten, 'Pilih kabupaten / kota');
+        resetSelect(kecamatan, 'Pilih kecamatan');
+        resetSelect(desa, 'Pilih desa / kelurahan');
+        if (!provinsi.value) return;
+
+        try {
+          setStatus(statusEl, 'Memuat kabupaten / kota...', 'info');
+          const data = await fetchWilayah(EMSIFA_BASE + '/regencies/' + provinsi.value + '.json');
+          setOptions(kabupaten, data, 'Pilih kabupaten / kota');
+          setStatus(statusEl, 'Kabupaten / kota berhasil dimuat.', 'success');
+        } catch (error) {
+          setStatus(statusEl, 'Gagal memuat kabupaten / kota.', 'error');
+        }
+      });
+
+      kabupaten.addEventListener('change', async () => {
+        resetSelect(kecamatan, 'Pilih kecamatan');
+        resetSelect(desa, 'Pilih desa / kelurahan');
+        if (!kabupaten.value) return;
+
+        try {
+          setStatus(statusEl, 'Memuat kecamatan...', 'info');
+          const data = await fetchWilayah(EMSIFA_BASE + '/districts/' + kabupaten.value + '.json');
+          setOptions(kecamatan, data, 'Pilih kecamatan');
+          setStatus(statusEl, 'Kecamatan berhasil dimuat.', 'success');
+        } catch (error) {
+          setStatus(statusEl, 'Gagal memuat kecamatan.', 'error');
+        }
+      });
+
+      kecamatan.addEventListener('change', async () => {
+        resetSelect(desa, 'Pilih desa / kelurahan');
+        if (!kecamatan.value) return;
+
+        try {
+          setStatus(statusEl, 'Memuat desa / kelurahan...', 'info');
+          const data = await fetchWilayah(EMSIFA_BASE + '/villages/' + kecamatan.value + '.json');
+          setOptions(desa, data, 'Pilih desa / kelurahan');
+          setStatus(statusEl, 'Desa / kelurahan berhasil dimuat.', 'success');
+        } catch (error) {
+          setStatus(statusEl, 'Gagal memuat desa / kelurahan.', 'error');
+        }
+      });
+    }
+
+    // ================================================================
+    // Jenis PTK -> Jabatan PTK (dependent dropdown) + Lisensi Kepsek
+    // ================================================================
+    function updateLisensiKepsek() {
+      const jenisPtk = document.getElementById('jenisPtk');
+      const wrapper = document.getElementById('lisensiKepsekWrapper');
+      if (!jenisPtk || !wrapper) return;
+
+      const isKepalaSekolah = jenisPtk.value === 'Kepala Sekolah';
+      wrapper.classList.toggle('hidden', !isKepalaSekolah);
+
+      if (!isKepalaSekolah) {
+        document.querySelectorAll('input[name="lisensiKepsek"]').forEach(function(r) {
+          r.checked = false;
+        });
+      }
+    }
+
+    function initJabatanPtk() {
+      const jenisPtk = document.getElementById('jenisPtk');
+      const jabatanPtk = document.getElementById('jabatanPtk');
+      const helpText = document.getElementById('jabatanPtkHelp');
+      if (!jenisPtk || !jabatanPtk) return;
+
+      function resetJabatan(message) {
+        jabatanPtk.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = message;
+        jabatanPtk.appendChild(option);
+        jabatanPtk.value = '';
+        jabatanPtk.disabled = true;
+        if (helpText) helpText.textContent = message;
+      }
+
+      function loadJabatan(jenis) {
+        const daftar = jabatanPtkData[jenis] || [];
+        jabatanPtk.innerHTML = '';
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Pilih jabatan PTK';
+        jabatanPtk.appendChild(placeholder);
+
+        daftar.forEach(function(jabatan) {
+          const option = document.createElement('option');
+          option.value = jabatan;
+          option.textContent = jabatan;
+          jabatanPtk.appendChild(option);
+        });
+
+        jabatanPtk.disabled = daftar.length === 0;
+        if (helpText) {
+          helpText.textContent = daftar.length
+            ? daftar.length + ' pilihan jabatan tersedia.'
+            : 'Jabatan tidak tersedia.';
+        }
+      }
+
+      jenisPtk.addEventListener('change', function() {
+        const jenis = this.value;
+
+        // Jabatan lama selalu dihapus ketika Jenis PTK berubah
+        jabatanPtk.value = '';
+        updateLisensiKepsek();
+
+        if (!jenis) {
+          resetJabatan('Pilih Jenis PTK terlebih dahulu.');
+          return;
+        }
+
+        loadJabatan(jenis);
+
+        // Kepala Sekolah hanya punya satu jabatan
+        if (jenis === 'Kepala Sekolah') {
+          jabatanPtk.value = 'Kepala Sekolah';
+        }
+      });
+
+      resetJabatan('Pilih Jenis PTK terlebih dahulu.');
+      updateLisensiKepsek();
+    }
+
+    // ================================================================
+    // School Picker Modal
+    // ================================================================
+    function initSchoolPicker() {
+      const modal = document.getElementById('schoolModal');
+      const openBtn = document.getElementById('openSchoolModal');
+      const closeBtn = document.getElementById('closeSchoolModal');
+      const listEl = document.getElementById('schoolList');
+      const searchInput = document.getElementById('schoolSearchInput');
+      const hiddenInput = document.getElementById('sekolah');
+      const selectedText = document.getElementById('selectedSchoolText');
+      const statusEl = document.getElementById('tugasStatus');
+
+      function renderSchools(keyword) {
+        keyword = keyword || '';
+        const q = keyword.trim().toLowerCase();
+        const filtered = sekolahData.filter(function(item) {
+          return item.text.toLowerCase().includes(q) || item.id.toLowerCase().includes(q);
+        });
+
+        listEl.innerHTML = '';
+
+        if (!filtered.length) {
+          listEl.innerHTML = '<div class="rounded-2xl px-4 py-3 text-sm text-slate-500">Data sekolah tidak ditemukan.</div>';
+          return;
+        }
+
+        filtered.forEach(function(item) {
+          const row = document.createElement('button');
+          row.type = 'button';
+          row.className = 'block w-full rounded-2xl px-4 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-blue-600 hover:text-white';
+
+          if (hiddenInput.value === item.id) {
+            row.className += ' bg-blue-600 text-white';
+          }
+
+          row.textContent = item.text;
+          row.addEventListener('click', function() {
+            hiddenInput.value = item.id;
+            selectedText.textContent = item.text;
+            selectedText.classList.remove('text-slate-500');
+            selectedText.classList.add('text-slate-800');
+            closeModal();
+            setStatus(statusEl, 'Sekolah dipilih: ' + item.text, 'success');
+          });
+
+          listEl.appendChild(row);
+        });
+      }
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        searchInput.value = '';
+        renderSchools('');
+        setTimeout(function() {
+          searchInput.focus();
+        }, 50);
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+
+      searchInput.addEventListener('input', function(e) {
+        renderSchools(e.target.value);
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('flex')) closeModal();
+      });
+
+      renderSchools('');
+    }
+
+    // ================================================================
+    // Modal Awal + Cek Status
+    // ================================================================
+    function initStartupModal() {
+      var startupModal = document.getElementById('startupModal');
+      var statusModal = document.getElementById('statusModal');
+      var btnIsiForm = document.getElementById('btnIsiForm');
+      var btnCekStatus = document.getElementById('btnCekStatus');
+      var btnCloseStatusModal = document.getElementById('closeStatusModal');
+      var btnKembaliKeForm = document.getElementById('btnKembaliKeForm');
+      var btnProsesCekStatus = document.getElementById('btnProsesCekStatus');
+      var resultBox = document.getElementById('statusCheckResult');
+      var inputSubmitId = document.getElementById('cekSubmitId');
+
+      function showStartup() {
+        startupModal.classList.remove('hidden');
+        startupModal.classList.add('flex');
+      }
+
+      function hideStartup() {
+        startupModal.classList.add('hidden');
+        startupModal.classList.remove('flex');
+      }
+
+      function showStatusModal() {
+        statusModal.classList.remove('hidden');
+        statusModal.classList.add('flex');
+        setTimeout(function() {
+          inputSubmitId.focus();
+        }, 50);
+      }
+
+      function hideStatusModal() {
+        statusModal.classList.add('hidden');
+        statusModal.classList.remove('flex');
+      }
+
+      function setResult(message, type) {
+        var base = 'mt-5 rounded-2xl border px-4 py-4 text-sm';
+        var styles = {
+          info: ' border-blue-200 bg-blue-50 text-blue-700',
+          success: ' border-emerald-200 bg-emerald-50 text-emerald-700',
+          error: ' border-rose-200 bg-rose-50 text-rose-700'
+        };
+        resultBox.className = base + (styles[type] || styles.info);
+        resultBox.classList.remove('hidden');
+        resultBox.innerHTML = message;
+      }
+
+      function escapeHtml(value) {
+        return String(value || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function resetResult() {
+        resultBox.className = 'mt-5 hidden rounded-2xl border px-4 py-4 text-sm';
+        resultBox.innerHTML = '';
+      }
+
+      btnIsiForm.addEventListener('click', function() {
+        hideStartup();
+        hideStatusModal();
+        resetResult();
+        showTab('identitas');
+      });
+
+      btnCekStatus.addEventListener('click', function() {
+        hideStartup();
+        resetResult();
+        showStatusModal();
+      });
+
+      btnCloseStatusModal.addEventListener('click', function() {
+        hideStatusModal();
+        resetResult();
+        showStartup();
+      });
+
+      btnKembaliKeForm.addEventListener('click', function() {
+        hideStatusModal();
+        resetResult();
+        showStartup();
+      });
+
+      statusModal.addEventListener('click', function(e) {
+        if (e.target === statusModal) {
+          hideStatusModal();
+          resetResult();
+          showStartup();
+        }
+      });
+
+      inputSubmitId.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          btnProsesCekStatus.click();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape') return;
+        if (statusModal.classList.contains('flex')) {
+          hideStatusModal();
+          resetResult();
+          showStartup();
+          return;
+        }
+        if (startupModal.classList.contains('flex')) {
+          hideStartup();
+        }
+      });
+
+      btnProsesCekStatus.addEventListener('click', function() {
+        var submitId = inputSubmitId.value.trim();
+
+        if (!submitId) {
+          setResult('Submit ID wajib diisi.', 'error');
+          return;
+        }
+
+        setResult('Sedang mencari status pengajuan...', 'info');
+
+        google.script.run
+          .withSuccessHandler(function(result) {
+            if (!result || !result.success) {
+              setResult((result && result.message) ? result.message : 'Data tidak ditemukan.', 'error');
+              return;
+            }
+
+            var html =
+              '<div class="space-y-2">' +
+                '<div><strong>Submit ID:</strong> ' + escapeHtml(result.data.submitId) + '</div>' +
+                '<div><strong>Nama:</strong> ' + escapeHtml(result.data.nama) + '</div>' +
+                '<div><strong>NIK:</strong> ' + escapeHtml(result.data.nik) + '</div>' +
+                '<div><strong>Sekolah:</strong> ' + escapeHtml(result.data.namaSekolah) + '</div>' +
+                '<div><strong>Status:</strong> ' + escapeHtml(result.data.status) + '</div>' +
+                '<div><strong>Tanggal Submit:</strong> ' + escapeHtml(result.data.timestamp) + '</div>' +
+              '</div>';
+
+            setResult(html, 'success');
+          })
+          .withFailureHandler(function(err) {
+            setResult('Terjadi error: ' + err.message, 'error');
+          })
+          .getStatusPTKBySubmitId(submitId);
+      });
+
+      showStartup();
+    }
+
+    // ================================================================
+    // Validasi Form (per seksi + keseluruhan)
+    // ================================================================
+    function getChecks() {
+      function val(id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : "";
+      }
+      function radio(nm) {
+        return !!document.querySelector('input[name="' + nm + '"]:checked');
+      }
+      function hasFile(id) {
+        var el = document.getElementById(id);
+        return !!(el && el.files && el.files.length > 0);
+      }
+
+      var jenis = val("jenisPtk");
+      var jabatan = val("jabatanPtk");
+      var jabatanTidakSesuai = !!(jenis && jabatan && (jabatanPtkData[jenis] || []).indexOf(jabatan) === -1);
+
+      return [
+        [!val("nik"), "identitas", "identitasStatus", "NIK wajib diisi."],
+        [!val("nama"), "identitas", "identitasStatus", "Nama wajib diisi."],
+        [!val("tempatLahir"), "identitas", "identitasStatus", "Tempat Lahir wajib diisi."],
+        [!val("tanggalLahir"), "identitas", "identitasStatus", "Tanggal Lahir wajib diisi."],
+        [!radio("jenisKelamin"), "identitas", "identitasStatus", "Jenis Kelamin wajib dipilih."],
+        [!val("namaIbuKandung"), "identitas", "identitasStatus", "Nama Ibu Kandung wajib diisi."],
+        [!val("agama"), "identitas", "identitasStatus", "Agama wajib dipilih."],
+        [!val("kebutuhanKhusus"), "identitas", "identitasStatus", "Kebutuhan Khusus wajib dipilih."],
+        [!radio("statusPerkawinan"), "identitas", "identitasStatus", "Status Perkawinan wajib dipilih."],
+        [!val("email"), "identitas", "identitasStatus", "Email wajib diisi."],
+        [!hasFile("fotoKtp"), "identitas", "identitasStatus", "Foto KTP wajib diunggah."],
+
+        [!val("domProvinsi"), "domisili", "domStatus", "Provinsi wajib dipilih."],
+        [!val("domKabupaten"), "domisili", "domStatus", "Kabupaten / Kota wajib dipilih."],
+        [!val("domKecamatan"), "domisili", "domStatus", "Kecamatan wajib dipilih."],
+        [!val("domDesa"), "domisili", "domStatus", "Desa / Kelurahan wajib dipilih."],
+        [!val("alamat"), "domisili", "domStatus", "Alamat wajib diisi."],
+
+        [!jenis, "kepegawaian", "kepegawaianStatus", "Jenis PTK wajib dipilih."],
+        [!jabatan, "kepegawaian", "kepegawaianStatus", "Jabatan PTK wajib dipilih."],
+        [jabatanTidakSesuai, "kepegawaian", "kepegawaianStatus", "Jabatan PTK tidak sesuai dengan Jenis PTK yang dipilih."],
+        [!val("statusKepegawaian"), "kepegawaian", "kepegawaianStatus", "Status Kepegawaian wajib dipilih."],
+        [!val("lembagaPengangkat"), "kepegawaian", "kepegawaianStatus", "Lembaga Pengangkat wajib dipilih."],
+        [!val("skPengangkatan"), "kepegawaian", "kepegawaianStatus", "SK Pengangkatan wajib diisi."],
+        [!val("tmtPengangkatan"), "kepegawaian", "kepegawaianStatus", "TMT Pengangkatan wajib diisi."],
+        [!val("sumberGaji"), "kepegawaian", "kepegawaianStatus", "Sumber Gaji wajib dipilih."],
+        [jenis === "Kepala Sekolah" && !radio("lisensiKepsek"), "kepegawaian", "kepegawaianStatus", "Lisensi Kepala Sekolah wajib dipilih."],
+
+        [!val("sekolah"), "penugasan", "tugasStatus", "Sekolah wajib dipilih."],
+        [!val("nomorSuratTugas"), "penugasan", "tugasStatus", "Nomor Surat Tugas wajib diisi."],
+        [!val("tanggalSuratTugas"), "penugasan", "tugasStatus", "Tanggal Surat Tugas wajib diisi."],
+        [!val("tmtTugas"), "penugasan", "tugasStatus", "TMT Tugas wajib diisi."],
+        [!hasFile("skPenugasan"), "penugasan", "tugasStatus", "SK Penugasan (PDF) wajib diunggah."],
+        [!document.getElementById("persetujuan").checked, "penugasan", "tugasStatus", "Anda harus menyetujui pernyataan."]
+      ];
+    }
+
+    function validateSection(section) {
+      var checks = getChecks();
+      for (var i = 0; i < checks.length; i++) {
+        var c = checks[i];
+        if (c[1] !== section) continue;
+        if (c[0]) {
+          showTab(c[1]);
+          setStatus(document.getElementById(c[2]), c[3], "error");
+          return false;
+        }
+      }
+      // Bersihkan pesan error lama jika seksi valid
+      var statusIds = { identitas: "identitasStatus", domisili: "domStatus", kepegawaian: "kepegawaianStatus" };
+      var el = statusIds[section] && document.getElementById(statusIds[section]);
+      if (el && el.classList.contains("border-rose-200")) clearStatus(el);
+      return true;
+    }
+
+    function validateForm() {
+      for (var i = 0; i < tabOrder.length; i++) {
+        if (!validateSection(tabOrder[i])) return false;
+      }
+      return true;
+    }
+
+    // ================================================================
+    // Form Submit - Google Apps Script
+    // ================================================================
+    document.getElementById("ptkForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      var statusEl = document.getElementById("tugasStatus");
+      var submitBtn = document.getElementById("submitBtn");
+      var submitLbl = document.getElementById("submitLabel");
+      var waBtn = document.getElementById("waAfterSubmitBtn");
+      var submitIdBox = document.getElementById("submitIdBox");
+      var submitIdText = document.getElementById("submitIdText");
+      var copySubmitIdBtn = document.getElementById("copySubmitIdBtn");
+
+      function buildWhatsAppUrl(nama, sekolah, submitId) {
+        var phone = '628xxxxxxxxxx'; // disamarkan — nomor asli di .env (PTK_ADMIN_WHATSAPP)
+        var text = [
+          'Halo Pak Sukardi, data PTK sudah berhasil dikirim.',
+          'Nama: ' + (nama || '-'),
+          'Sekolah: ' + (sekolah || '-'),
+          'Submit ID: ' + (submitId || '-'),
+          'Submit ID ini digunakan untuk cek status pengajuan PTK.'
+        ].join('\n');
+        return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
+      }
+
+      function fallbackCopyText(text) {
+        var tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'absolute';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+      if (!validateForm()) return;
+
+      var formData = new FormData(this);
+      var payload = {};
+
+      formData.forEach(function(value, key) {
+        if (key !== "skPenugasan" && key !== "fotoKtp") {
+          payload[key] = value;
+        }
+      });
+
+      // jabatanPtk sudah ikut terkirim otomatis lewat FormData (name="jabatanPtk")
+
+      var selProv = document.getElementById("domProvinsi");
+      var selKab = document.getElementById("domKabupaten");
+      var selKec = document.getElementById("domKecamatan");
+      var selDesa = document.getElementById("domDesa");
+
+      payload.domProvinsi = selProv.options[selProv.selectedIndex] ? selProv.options[selProv.selectedIndex].text : "";
+      payload.domKabupaten = selKab.options[selKab.selectedIndex] ? selKab.options[selKab.selectedIndex].text : "";
+      payload.domKecamatan = selKec.options[selKec.selectedIndex] ? selKec.options[selKec.selectedIndex].text : "";
+      payload.domDesa = selDesa.options[selDesa.selectedIndex] ? selDesa.options[selDesa.selectedIndex].text : "";
+
+      var selectedSchoolText = document.getElementById("selectedSchoolText");
+      var sekolahLabel = selectedSchoolText ? selectedSchoolText.textContent.trim() : (payload.sekolah || "");
+
+      submitBtn.disabled = true;
+      submitLbl.textContent = "Menyimpan...";
+      waBtn.classList.add("hidden");
+      waBtn.href = "#";
+      submitIdBox.classList.add("hidden");
+      submitIdText.textContent = "-";
+      copySubmitIdBtn.disabled = true;
+      copySubmitIdBtn.innerHTML = '<i class="fas fa-copy mr-2"></i> Salin Submit ID';
+      copySubmitIdBtn.onclick = null;
+      setStatus(statusEl, "Sedang menyimpan data ke Google Sheets...", "info");
+
+      function onSuccess(result) {
+        submitBtn.disabled = false;
+        submitLbl.textContent = "Simpan Data PTK";
+
+        if (result.success) {
+          clearStatus(statusEl);
+          submitIdText.textContent = result.submitId || "-";
+          submitIdBox.classList.remove("hidden");
+          copySubmitIdBtn.disabled = false;
+          copySubmitIdBtn.onclick = function() {
+            var currentSubmitId = result.submitId || "";
+
+            try {
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentSubmitId).then(function() {
+                  copySubmitIdBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Submit ID Tersalin';
+                  waBtn.href = buildWhatsAppUrl(payload.nama, sekolahLabel, currentSubmitId);
+                  waBtn.classList.remove("hidden");
+                }).catch(function() {
+                  fallbackCopyText(currentSubmitId);
+                  copySubmitIdBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Submit ID Tersalin';
+                  waBtn.href = buildWhatsAppUrl(payload.nama, sekolahLabel, currentSubmitId);
+                  waBtn.classList.remove("hidden");
+                });
+                return;
+              }
+
+              fallbackCopyText(currentSubmitId);
+              copySubmitIdBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Submit ID Tersalin';
+              waBtn.href = buildWhatsAppUrl(payload.nama, sekolahLabel, currentSubmitId);
+              waBtn.classList.remove("hidden");
+            } catch (copyError) {
+              setStatus(statusEl, "Data berhasil disimpan, tetapi Submit ID gagal disalin. Silakan salin manual: " + currentSubmitId, "error");
+            }
+          };
+        } else {
+          waBtn.classList.add("hidden");
+          waBtn.href = "#";
+          submitIdBox.classList.add("hidden");
+          submitIdText.textContent = "-";
+          copySubmitIdBtn.disabled = true;
+          copySubmitIdBtn.onclick = null;
+          setStatus(statusEl, "Gagal menyimpan: " + result.message, "error");
+        }
+      }
+
+      function onError(err) {
+        submitBtn.disabled = false;
+        submitLbl.textContent = "Simpan Data PTK";
+        waBtn.classList.add("hidden");
+        waBtn.href = "#";
+        submitIdBox.classList.add("hidden");
+        submitIdText.textContent = "-";
+        copySubmitIdBtn.disabled = true;
+        copySubmitIdBtn.onclick = null;
+        setStatus(statusEl, "Error: " + err.message, "error");
+      }
+
+      var MAX_SIZE = 1 * 1024 * 1024;
+      var ktpInput = document.getElementById("fotoKtp");
+      var ktpFile = ktpInput.files && ktpInput.files[0];
+      var fileInput = document.getElementById("skPenugasan");
+      var skFile = fileInput.files && fileInput.files[0];
+
+      if (ktpFile && ktpFile.size > MAX_SIZE) {
+        submitBtn.disabled = false;
+        submitLbl.textContent = "Simpan Data PTK";
+        waBtn.classList.add("hidden");
+        waBtn.href = "#";
+        submitIdBox.classList.add("hidden");
+        setStatus(statusEl, "Foto KTP melebihi batas 1 MB. Pilih file yang lebih kecil.", "error");
+        showTab("identitas");
+        return;
+      }
+
+      if (skFile && skFile.size > MAX_SIZE) {
+        submitBtn.disabled = false;
+        submitLbl.textContent = "Simpan Data PTK";
+        waBtn.classList.add("hidden");
+        waBtn.href = "#";
+        submitIdBox.classList.add("hidden");
+        setStatus(statusEl, "File SK Penugasan melebihi batas 1 MB. Pilih file yang lebih kecil.", "error");
+        return;
+      }
+
+      function readAsBase64(f) {
+        return new Promise(function(resolve, reject) {
+          var r = new FileReader();
+          r.onload = function(ev) {
+            resolve(ev.target.result.split(",")[1]);
+          };
+          r.onerror = reject;
+          r.readAsDataURL(f);
+        });
+      }
+
+      setStatus(statusEl, "Membaca berkas...", "info");
+
+      Promise.all([
+        ktpFile ? readAsBase64(ktpFile) : Promise.resolve(null),
+        skFile ? readAsBase64(skFile) : Promise.resolve(null)
+      ]).then(function(results) {
+        payload.ktpBase64 = results[0];
+        payload.ktpFileName = ktpFile ? ktpFile.name : null;
+
+        google.script.run
+          .withSuccessHandler(onSuccess)
+          .withFailureHandler(onError)
+          .simpanDataPTK(payload, results[1], skFile ? skFile.name : null);
+      }).catch(function() {
+        submitBtn.disabled = false;
+        submitLbl.textContent = "Simpan Data PTK";
+        waBtn.classList.add("hidden");
+        waBtn.href = "#";
+        submitIdBox.classList.add("hidden");
+        setStatus(statusEl, "Gagal membaca berkas. Coba lagi.", "error");
+      });
+    });
+
+    // ================================================================
+    // Inisialisasi
+    // ================================================================
+    resetSelect(document.getElementById("domProvinsi"), "Memuat provinsi...");
+    showTab("identitas");
+    initWilayah("dom", "domStatus");
+    initJabatanPtk();
+    initSchoolPicker();
+    initStartupModal();
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer components {
+      .input {
+        @apply w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100;
+      }
+
+      select.input {
+        @apply appearance-none pr-10;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+      }
+
+      select.input:focus {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      }
+
+      .textarea {
+        @apply min-h-[110px] w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100;
+      }
+
+      .group-box {
+        @apply flex min-h-[52px] flex-wrap items-center gap-4 rounded-2xl border border-slate-300 bg-white px-4 py-3;
+      }
+
+      .radio {
+        @apply h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500;
+      }
+
+      .btn-primary {
+        @apply inline-flex items-center rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 disabled:opacity-50;
+      }
+
+      .btn-secondary {
+        @apply inline-flex items-center rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50;
+      }
+
+      .btn-success {
+        @apply inline-flex items-center rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700 disabled:opacity-50;
+      }
+
+      .status-box {
+        @apply mt-5 rounded-2xl border px-4 py-3 text-sm;
+      }
+
+      .status-box.info {
+        @apply border-blue-200 bg-blue-50 text-blue-700;
+      }
+
+      .status-box.success {
+        @apply border-emerald-200 bg-emerald-50 text-emerald-700;
+      }
+
+      .status-box.error {
+        @apply border-rose-200 bg-rose-50 text-rose-700;
+      }
+    }
+  </style>
+</body>
+</html>
